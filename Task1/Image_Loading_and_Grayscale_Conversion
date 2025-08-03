@@ -1,0 +1,44 @@
+import cv2
+import matplotlib.pyplot as plt
+
+def process_image_to_grayscale(image_path):
+    """
+    Loads an image, converts it to grayscale, and displays both images.
+    It also saves the grayscale image.
+
+    Args:
+        image_path (str): The path to the image file.
+    """
+    # Load the original image
+    try:
+        original_image = cv2.imread(image_path)
+        if original_image is None:
+            raise FileNotFoundError(f"Image not found at {image_path}")
+    except Exception as e:
+        print(f"Error loading image: {e}")
+        return
+
+    # Convert the image to grayscale
+    grayscale_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
+
+    # Save the grayscale image
+    grayscale_output_path = "photo_gray.jpg"
+    cv2.imwrite(grayscale_output_path, grayscale_image)
+    print(f"Grayscale image saved as {grayscale_output_path}")
+
+    # Display both images
+    fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+
+    # Display original image
+    axes[0].imshow(cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB))
+    axes[0].set_title("Original Image")
+    axes[0].axis('off')
+
+    # Display grayscale image
+    axes[1].imshow(grayscale_image, cmap='gray')
+    axes[1].set_title("Grayscale Image")
+    axes[1].axis('off')
+
+    plt.tight_layout()
+    plt.show()
+
