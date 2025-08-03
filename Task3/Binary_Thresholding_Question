@@ -1,0 +1,5 @@
+The pixel's original value is 180.
+
+The threshold is 150.
+
+Since the pixel value of 180 is greater than the threshold of 150 (180>150), the new pixel value is set to the maximum output value, which is 255.
